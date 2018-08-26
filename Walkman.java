@@ -100,18 +100,23 @@ public class Walkman {
                     printPlaylist();
                     break;
                 case 9://delete song
-                    if(goingForward) {
-                        int songIndex = listIterator.previousIndex();
-                        System.out.println("Deleted " + playlist.get(songIndex).getTitle());
-                        onScreenPlayer(songIndex + 1);
-                        listIterator.remove();
-                        listIterator.next();
+                    if(playlist.size() > 2) {
+                        if(listIterator.hasNext()) {
+                            int songIndex = listIterator.previousIndex();
+                            System.out.println("Deleted " + playlist.get(songIndex).getTitle());
+                            onScreenPlayer(songIndex + 1);
+                            listIterator.remove();
+                            listIterator.next();
+                        } else if (listIterator.hasPrevious()){
+                            int songIndex = listIterator.nextIndex();
+                            System.out.println("Deleted " + playlist.get(songIndex).getTitle());
+                            onScreenPlayer(songIndex - 1);
+                            listIterator.remove();
+                            listIterator.previous();
+                        }
                     } else {
-                        int songIndex = listIterator.nextIndex();
-                        System.out.println("Deleted " + playlist.get(songIndex).getTitle());
-                        onScreenPlayer(songIndex - 1);
-                        listIterator.remove();
-                        listIterator.previous();
+                        System.out.println("Not enough songs to delete another one. " +
+                                "To delete the playlist, go to main menu");
                     }
                     break;
                 default://print menu
