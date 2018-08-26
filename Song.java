@@ -4,9 +4,9 @@ public class Song {
     private String title;
     private double duration;
 
-    public Song(String title, double duration) {
+    public Song(String title) {
         this.title = title;
-        this.duration = duration;
+        this.duration = Math.floor(Math.random()* 400);
     }
 
     public String getTitle() {
@@ -15,5 +15,9 @@ public class Song {
 
     public double getDuration() {
         return duration;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
